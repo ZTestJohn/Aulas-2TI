@@ -28,7 +28,7 @@ body {
 }
 .visor input {
     outline: none;
-    width: 100%;
+    width: 80%;
     height: 7vw;
     background-color: rgb(94, 93, 93);
     border: none;
@@ -38,17 +38,26 @@ body {
     color: white;
     text-align: right;
 }
-.visor button {
-    width: 7vw;
+.delete-buttons {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
     height: 7vw;
-    aspect-ratio: 1/1;
+    gap: 5px;
+}
+.delete-buttons button {
+    flex: 1;
     background-color: rgb(94, 93, 93);
     border: none;
     border-radius: 5px;
-    padding: 10px;
-    font-size: 3vw;
+    padding: 5px;
+    font-size: 2vw;
     color: white;
     text-align: center;
+    transition: background-color 0.3s ease;
+}
+.delete-buttons button:hover {
+    background-color: rgb(255, 0, 0);
 }
 .buttons {
     padding-top: 20px;
@@ -66,9 +75,6 @@ body {
     margin: 5px;
     border-radius: 50%;
     font-size: 3vw;
-}
-.colorButton {
-    background-color: rgb(255, 0, 0);
 }
 main {
     display: flex;

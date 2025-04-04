@@ -17,25 +17,80 @@
       <div class="calculadora">
         <div class="visor">
           <input type="text" id="display" />
-          <button class="number" onclick="clearDisplay()" id="btn-clear">C</button>
+          <div class="delete-buttons">
+            <button class="clear" onclick="clearDisplay()" id="btn-clear">
+              C
+            </button>
+            <button class="del" onclick="deleteLast()" id="btn-clear">
+              &#9249;
+            </button>
+          </div>
         </div>
         <div class="buttons">
-          <button class="number" onclick="addToCalculate(1)" id="btn-1">1</button>
-          <button class="number" onclick="addToCalculate(2)" id="btn-2">2</button>
-          <button class="number" onclick="addToCalculate(3)" id="btn-3">3</button>
-          <button class="number colorButton" onclick="addToCalculate('+')" id="btn-plus">+</button>
-          <button class="number" onclick="addToCalculate(4)" id="btn-4">4</button>
-          <button class="number" onclick="addToCalculate(5)" id="btn-5">5</button>
-          <button class="number" onclick="addToCalculate(6)" id="btn-6">6</button>
-          <button class="number colorButton" onclick="addToCalculate('-')" id="btn-minus">-</button>
-          <button class="number" onclick="addToCalculate(7)" id="btn-7">7</button>
-          <button class="number" onclick="addToCalculate(8)" id="btn-8">8</button>
-          <button class="number" onclick="addToCalculate(9)" id="btn-9">9</button>
-          <button class="number colorButton" onclick="addToCalculate('*')" id="btn-mult">&#215;</button>
-          <button class="number" onclick="addToCalculate(0)" id="btn-0">0</button>
-          <button class="number" onclick="addToCalculate('.')" id="btn-dot">.</button>
-          <button class="operator colorButton" onclick="addToCalculate('/')" id="btn-divide">&#xF7;</button>
-          <button class="number colorButton" onclick="equal()" id="btn-equal">=</button>
+          <button class="number" onclick="addToCalculate(1)" id="btn-1">
+            1
+          </button>
+          <button class="number" onclick="addToCalculate(2)" id="btn-2">
+            2
+          </button>
+          <button class="number" onclick="addToCalculate(3)" id="btn-3">
+            3
+          </button>
+          <button
+            class="number colorButton"
+            onclick="addToCalculate('+')"
+            id="btn-plus"
+          >
+            +
+          </button>
+          <button class="number" onclick="addToCalculate(4)" id="btn-4">
+            4
+          </button>
+          <button class="number" onclick="addToCalculate(5)" id="btn-5">
+            5
+          </button>
+          <button class="number" onclick="addToCalculate(6)" id="btn-6">
+            6
+          </button>
+          <button
+            class="number colorButton"
+            onclick="addToCalculate('-')"
+            id="btn-minus"
+          >
+            -
+          </button>
+          <button class="number" onclick="addToCalculate(7)" id="btn-7">
+            7
+          </button>
+          <button class="number" onclick="addToCalculate(8)" id="btn-8">
+            8
+          </button>
+          <button class="number" onclick="addToCalculate(9)" id="btn-9">
+            9
+          </button>
+          <button
+            class="number colorButton"
+            onclick="addToCalculate('*')"
+            id="btn-mult"
+          >
+            &#215;
+          </button>
+          <button class="number" onclick="addToCalculate(0)" id="btn-0">
+            0
+          </button>
+          <button class="number" onclick="addToCalculate('.')" id="btn-dot">
+            .
+          </button>
+          <button
+            class="operator colorButton"
+            onclick="addToCalculate('/')"
+            id="btn-divide"
+          >
+            &#xF7;
+          </button>
+          <button class="number colorButton" onclick="equal()" id="btn-equal">
+            =
+          </button>
         </div>
       </div>
     </main>
