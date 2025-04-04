@@ -67,6 +67,9 @@ body {
     border-radius: 50%;
     font-size: 3vw;
 }
+.colorButton {
+    background-color: rgb(255, 0, 0);
+}
 main {
     display: flex;
     justify-content: center;
