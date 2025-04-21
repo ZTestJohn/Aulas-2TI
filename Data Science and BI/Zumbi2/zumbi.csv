@@ -1,0 +1,21 @@
+Nome,Idade,Gênero,Local,Dias,Arma,Ferimentos_Graves,Sobreviveu,Observações
+Ana Souza,28,Feminino,Base Norte,45,Sim,Não,Sim,
+Carlos Lima,,Masculino,Base Sul,50,Não,Sim,Sim,Precisamos verificar sua história.
+Mariana Torres,23,Feminino,,32,Sim,Sim,Sim,
+João Pedro,35,Masculino,Base Oeste,38,Sim,Sim,Sim,
+Laura Mello,31,Feminino,Base Leste,40,Não,Sim,Sim,Teve um comportamento estranho.
+Ricardo Gomes,22,Masculino,,25,Não,Não,Sim,
+Fernanda Dias,19,Feminino,Base Norte,50,Sim,Não,Sim,
+Tiago Alves,42,Masculino,Base Sul,,Sim,Sim,Não,Não há mais informações.
+Camila Braga,30,Feminino,Base Leste,55,Sim,Não,Sim,
+Eduardo Castro,27,Masculino,Base Norte,43,Não,Sim,Sim,
+Bárbara Lima,34,Feminino,Base Oeste,41,Não,Sim,Não,
+José Ramos,37,Masculino,Base Leste,60,Sim,Não,Sim,
+Patrícia Nunes,,Feminino,Base Sul,29,Não,Sim,Sim,
+Felipe Souza,26,Masculino,Base Oeste,36,Sim,Não,Sim,
+Bruna Rocha,24,Feminino,Base Norte,52,Sim,Não,Sim,
+Mateus Silva,33,Masculino,,28,Não,Sim,Sim,
+Renata Barros,29,Feminino,Base Leste,47,Sim,Não,Sim,
+Alberto Fonseca,40,Masculino,Base Sul,51,Não,Sim,Não,
+Isabela Cruz,21,Feminino,,31,Sim,Não,Sim,
+Vinícius Prado,38,Masculino,Base Oeste,39,Não,Sim,Sim
