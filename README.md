@@ -1,2 +1,2 @@
 # Aulas 2TI
- Começei atrasado, quase no segundo bimestre por conta de que proibiram o celular
+Os conteúdos realizados durante o segundo ano do ensino médio ficaram parcialmente separados devido a uma lei sancionada em 2025, que proibiu o uso de celulares. Isso dificultou a autenticação no GitHub, o que resultou na separação dos materiais.
