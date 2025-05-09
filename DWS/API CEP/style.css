@@ -1,0 +1,79 @@
+/* Estilo neon azul royal com fundo preto */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    background-color: #111;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 255, 0.5);
+    text-align: center;
+    width: 350px;
+  }
+  
+  h1 {
+    color: #00aaff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px #00aaff, 0 0 10px #00aaff;
+  }
+  
+  input {
+    width: 80%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #000;
+    border: 2px solid #00aaff;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #00aaff;
+    outline: none;
+    box-shadow: 0 0 8px #00aaff;
+    transition: 0.3s;
+  }
+  
+  input::placeholder {
+    color: #0077cc;
+  }
+  
+  input:focus {
+    border-color: #0077cc;
+    box-shadow: 0 0 12px #0077ff, 0 0 20px #0077ff;
+  }
+  
+  button {
+    width: 50%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #00aaff;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0077cc;
+    box-shadow: 0 0 12px #0077ff, 0 0 18px #0077ff;
+  }
+  
+  #resultado {
+    margin-top: 25px;
+    text-align: left;
+    color: #ffffff;
+    font-size: 15px;
+  }
+  
+  #resultado p {
+    margin: 5px 0;
+  }
+  
