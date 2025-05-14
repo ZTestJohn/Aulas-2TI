@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Países</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,10 +21,18 @@
           <i class="bi bi-house-fill"></i>
         </div>
         <div class="links-box">
-          <a class="link-styles" href="./countries.html">Filtrar</a>
+          <a class="link-styles" href="./countries.html">Todos os países</a>
           <i class="bi bi-check-all"></i>
         </div>
+        <div class="search-box">
+          <div class="search-bar">
+            <input type="text" id="searchBar" placeholder="Pesquisar país..." />
+            <i class="bi bi-search"></i>
+          </div>
+        </div>
+        <div id="allCountries"></div>
       </div>
     </main>
+    <script type="module" src="../js/filterCountries.js"></script>
   </body>
 </html>
