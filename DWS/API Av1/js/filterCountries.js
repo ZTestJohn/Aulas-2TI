@@ -1,63 +1,59 @@
-async function fecthAllCountries() {
-  const allCountries = document.getElementById("allCountries");
+import CardsList from "./components/CardsList.js";
 
-  const spinner = document.createElement("div");
-  spinner.classList.add("spinner");
-  spinner.innerHTML = `<div class="loader"></div>`;
-  allCountries.appendChild(spinner);
+const form = document.getElementById("filterForm");
+const searchBar = document.getElementById("searchBar");
+const regionSelect = document.getElementById("regionSelect");
+const allCountries = document.getElementById("allCountries");
+const numOfCountries = document.getElementById("numOfCountries");
 
-  const url = "https://restcountries.com/v3.1/all";
+let countriesData = [];
 
+async function fetchCountries() {
+  allCountries.innerHTML = `<div class="spinner"><div class="loader"></div></div>`;
   try {
-    const response = await fetch(url);
+    const response = await fetch("https://restcountries.com/v3.1/all");
     const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(`Erro na API: ${reposResponse.status}`);
-    }
-
-    spinner.remove();
-
-    data.map((country) => {
-      createCards({
-        card_class: "country-card",
-        country_flag: country.flags.png,
-        capital: country.capital[0],
-        country_name: country.name.common,
-        pai: allCountries,
-        population: country.population,
-        region: country.region,
-      });
-    });
+    countriesData = data;
+    filterAndRender();
   } catch (error) {
-    console.error(`Erro: ${error.message}`);
-    spinner.remove();
+    allCountries.innerHTML = "Erro ao carregar países.";
   }
 }
 
-function createCards({
-  card_class,
-  country_flag,
-  country_name,
-  capital,
-  region,
-  population,
-  pai,
-}) {
-  const card = document.createElement("div");
-  card.classList.add(card_class);
+function filterAndRender() {
+  const searchValue = searchBar.value.trim().toLowerCase();
+  const regionValue = regionSelect.value;
 
-  card.innerHTML = `
-        <img src="${country_flag}" alt="Imagem da badeira">
-        <h2>${country_name}</h2>
-        <h3>Capital: ${capital}</h3>
-        <p>Região: ${region}</p>
-        <p>População: ${population} habitantes</p>
-    `;
+  let filtered = countriesData;
 
-  pai.appendChild(card);
+  if (regionValue) {
+    filtered = filtered.filter((country) => country.region === regionValue);
+  }
+
+  if (searchValue) {
+    filtered = filtered.filter((country) => {
+      const namePt = country.translations?.por?.common || "";
+      const nameEn = country.name?.common || "";
+      return (
+        namePt.toLowerCase().includes(searchValue) ||
+        nameEn.toLowerCase().includes(searchValue)
+      );
+    });
+  }
+
+  allCountries.innerHTML = "";
+  numOfCountries.textContent = `${filtered.length} países encontrados`;
+
+  if (filtered.length === 0) {
+    allCountries.innerHTML = "<p>Nenhum país encontrado.</p>";
+    return;
+  }
+
+  CardsList(filtered, allCountries, "country-card");
 }
 
-addEventListener("DOMContentLoaded", fecthAllCountries);
+form.addEventListener("submit", (e) => e.preventDefault());
+searchBar.addEventListener("input", filterAndRender);
+regionSelect.addEventListener("change", filterAndRender);
 
-export default createCards;
+window.addEventListener("DOMContentLoaded", fetchCountries);

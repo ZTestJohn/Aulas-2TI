@@ -1,6 +1,7 @@
-import { createCards } from "./createCards.js";
+import CardsList from "./components/CardsList.js";
 
 async function fecthAllCountries() {
+  const numOfCountries = document.getElementById("numOfCountries");
   const allCountries = document.getElementById("allCountries");
 
   const spinner = document.createElement("div");
@@ -20,17 +21,10 @@ async function fecthAllCountries() {
 
     spinner.remove();
 
-    data.map((country) => {
-      createCards({
-        card_class: "country-card",
-        country_flag: country.flags.png,
-        capital: country.capital[0],
-        country_name: country.name.common,
-        pai: allCountries,
-        population: country.population,
-        region: country.region,
-      });
-    });
+    numOfCountries.innerHTML = `${data.length} países encontrados`;
+
+    CardsList(data, allCountries, "country-card");
+
   } catch (error) {
     console.error(`Erro: ${error.message}`);
     spinner.remove();

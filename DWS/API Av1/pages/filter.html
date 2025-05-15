@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Países</title>
+    <link rel="icon" type="image/x-icon" href="../public/bandeira.png" />
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,20 +17,32 @@
     <main>
       <div class="home-box-container">
         <h2 class="title-home">Filtrar países</h2>
+        <h3 id="numOfCountries">0 países encontrados</h3>
         <div class="links-box">
-          <a class="link-styles" href="./index.html">Página inical</a>
           <i class="bi bi-house-fill"></i>
+          <a class="link-styles" href="./index.html">Página inical</a>
         </div>
         <div class="links-box">
-          <a class="link-styles" href="./countries.html">Todos os países</a>
           <i class="bi bi-check-all"></i>
+          <a class="link-styles" href="./countries.html">Todos os países</a>
         </div>
-        <div class="search-box">
+        <form class="search-box" id="filterForm" autocomplete="off">
           <div class="search-bar">
             <input type="text" id="searchBar" placeholder="Pesquisar país..." />
             <i class="bi bi-search"></i>
           </div>
-        </div>
+          <div class="input-select-region">
+            <select id="regionSelect" name="region" class="styled-select">
+              <option value="">Selecione uma região</option>
+              <option value="Africa">África</option>
+              <option value="Americas">Américas</option>
+              <option value="Asia">Ásia</option>
+              <option value="Europe">Europa</option>
+              <option value="Oceania">Oceania</option>
+              <option value="Antarctic">Antártica</option>
+            </select>
+          </div>
+        </form>
         <div id="allCountries"></div>
       </div>
     </main>

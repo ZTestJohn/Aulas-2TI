@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Países</title>
+    <link rel="icon" type="image/x-icon" href="../public/bandeira.png" />
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,17 +17,18 @@
     <main>
       <div class="home-box-container">
         <h2 class="title-home">Todos os países</h2>
+        <h3 id="numOfCountries">0 países encontrados</h3>
         <div class="links-box">
-          <a class="link-styles" href="./index.html">Página inical</a>
           <i class="bi bi-house-fill"></i>
+          <a class="link-styles" href="./index.html">Página inical</a>
         </div>
         <div class="links-box">
-          <a class="link-styles" href="./filter.html">Filtrar </a>
           <i class="bi bi-filter"></i>
+          <a class="link-styles" href="./filter.html">Filtrar </a>
         </div>
         <div id="allCountries"></div>
       </div>
     </main>
-    <script type="module" src="../js/script.js"></script>
+    <script type="module" src="../js/countries.js"></script>
   </body>
 </html>
