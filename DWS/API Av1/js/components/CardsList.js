@@ -11,7 +11,7 @@ function CardsList(arrayData, pai, cardClass) {
         country.translations.por.common === undefined
           ? country.name.common
           : country.translations.por.common,
-      pai: pai,
+      container: pai,
       population: country.population,
       region: country.region,
     });
