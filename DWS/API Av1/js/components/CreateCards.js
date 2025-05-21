@@ -1,3 +1,51 @@
+/*
+Geral:
+
+Palavras chave:
+let: Declara uma variável que pode ter seu valor alterado depois.
+const: Declara uma variável cujo valor não pode ser reatribuído. Usada para valores constantes ou objetos que não serão reatribuídos.
+function: Define uma função, um bloco de código reutilizável.
+return: Encerra a execução de uma função e pode retornar um valor.
+if: Estrutura condicional, executa um bloco de código se a condição for verdadeira.
+else: Executa um bloco alternativo se a condição do if for falsa.
+async: Define uma função assíncrona, que pode usar await para operações assíncronas.
+await: Pausa a execução da função async até que a Promise seja resolvida.
+try/catch: Bloco para tratar erros em operações que podem falhar.
+forEach: Método de array para executar uma função para cada elemento do array.
+import/export: Importa ou exporta módulos/funções/objetos entre arquivos.
+export default: utilizado para exportar uma função como exportação padrão do módulo. Isso permite que outros arquivos importem essa função diretamente, facilitando o reuso do código.
+document: Objeto global que representa o documento HTML atual.
+console: Objeto global para exibir mensagens no console do navegador.
+
+Operadores:
+=: Atribuição de valor a uma variável.
+===: Comparação estrita (valor e tipo).
+!==: Diferença estrita (valor e tipo).
+? :: Operador ternário, condicional em uma linha (condição ? valorSeVerdadeiro : valorSeFalso).
+.: Acesso a propriedades de objetos.
+||: Operador "ou" lógico, retorna o primeiro valor verdadeiro.
+&&: Operador "e" lógico, retorna o valor se ambos forem verdadeiros.
+
+Símbolos de pontuação:
+;: Finaliza instruções.
+,: Separa itens em listas, argumentos de funções, propriedades de objetos.
+(): Usado para agrupar argumentos de funções e precedência de operações.
+{}: Delimita blocos de código (funções, objetos, estruturas de controle).
+[]: Usado para arrays e acesso a índices ou propriedades dinâmicas.
+
+Aspas e crases:
+"" e '': Usadas para definir strings simples (texto).
+`` (crases): Usadas para template strings, permitindo interpolação de variáveis com ${} e múltiplas linhas.
+
+Valores:
+Números: Usados para populações, contagem de países, etc.
+Strings: Textos como nomes de países, regiões, mensagens de erro, HTML.
+Booleanos: Resultados de comparações.
+Arrays: Listas de países, capitais, etc.
+Objetos: Dados de países, parâmetros de funções, elementos do DOM.
+null/undefined: Representam ausência de valor ou valor não definido.
+*/
+
 function CreateCards({
   card_class,
   country_flag,
@@ -6,22 +54,21 @@ function CreateCards({
   region,
   population,
   container,
-}) 
-/*
-Este bloco começa com a palavra chave "function" que é utilizada para criar uma função , logo em seguida vem o nome da função "CreateCards" que é o nome que será utilizado para chamar a função, eu ecolhi este nome pois a função da função será criar cartões de cada país.
-Em seguida temos os parênteses que são utilizados para passar parâmetros para a função, dentro dos parênteses temos uma desestruturação de objeto que contém as propriedades que serão utilizadas dentro da função, eu escolhi utilizar um objeto para passar os parâmetros pois assim fica mais fácil de se utilizar a função, já que o autocomplete sugere por conta própria os argumentos.
-Depois temos os parâmetros:
-  card_class: Este argumento é destinado a receber a classe que o cartão terá, esse nome foi escolhido para facilitar entender o que faz;
-  country_flag: Este argumento é destinado a receber a bandeira do país, esse nome foi escolhido para facilitar entender o que faz;
-  country_name: Este argumento é destinado a receber o nome do país, esse nome foi escolhido para facilitar entender o que faz;
-  capital: Este argumento é destinado a receber a capital do país, esse nome foi escolhido para facilitar entender o que faz;
-  region: Este argumento é destinado a receber região do país, esse nome foi escolhido para facilitar entender o que faz;
-  population: Este argumento é destinado a receber população do país, esse nome foi escolhido para facilitar entender o que faz;
-  pai: Este argumento é destinado a receber o elemento pai que irá receber o cartão, esse nome foi escolhido para facilitar entender o que faz;
-A função termina com um fechamento de chaves, isso indica que o final do objeto que foi passado como parâmetro, e logo em seguida temos um parênteses que indica o final dos parâmetros.
+}) {
+  /*
+O nome "CreateCards" foi escolhido porque a função serve para criar cartões de cada país.
+Os parâmetros aqui são passados usando a desestruturação de objeto para facilitar o uso.
+Parâmetros (são autoexplicativos):
+  card_class: Classe CSS do cartão.
+  country_flag: URL da bandeira do país.
+  country_name: Nome do país.
+  capital: Capital do país.
+  region: Região do país.
+  population: População do país.
+  container: Elemento pai que receberá o cartão.
+Esses nomes foram escolhidos para serem autoexplicativos e facilitar a leitura do código.
 */
 
-{
   const card = document.createElement("div");
   card.classList.add(card_class);
 
@@ -41,21 +88,18 @@ A função termina com um fechamento de chaves, isso indica que o final do objet
 }
 
 /*
-Este bloco começa com uma chave para indicar o início do bloco de código da função, logo em seguida temos a criação de uma variável do tipo const, já que não será alterada, chamada card, nome escolhido para ser intuítivo, já que irá receber um elemento HTML do tipo div, essa div será o cartão que irá conter as informações do país. Isto é feito através do acesso ao objeto global document, que é o objeto que representa o documento HTML, e usa-se o método createElement para criar um novo elemento HTML, neste caso um div (especificado entre parênteses.
-Em seguida temos a variável card recebendo uma classe através do método classList.add, que adiciona a classe que foi passada como parâmetro para a função, essa classe será utilizada para estilizar o cartão.
-Logo em seguida temos a variável card recebendo um HTML através do método innerHTML, que é utilizado para adicionar conteúdo HTML dentro do elemento card, neste caso o conteúdo HTML é uma string que contém a estrutura do cartão, onde temos:
-  <img src="${country_flag}" alt="Imagem da badeira">: Aqui temos uma tag img que irá receber a imagem da bandeira do país, o src recebe a variável country_flag que foi passada como parâmetro para a função, e o alt é uma descrição da imagem, que é importante para acessibilidade.
-  <h2>${country_name}</h2>: Aqui temos uma tag h2 que irá receber o nome do país, o conteúdo é passado através da variável country_name que foi passada como parâmetro para a função.
-  <h3><i class="bi bi-geo-alt"></i> Capital: ${capital}</h3>: Aqui temos uma tag h3 que irá receber a capital do país, o conteúdo é passado através da variável capital que foi passada como parâmetro para a função, e também temos um ícone de localização utilizando a biblioteca Bootstrap Icons.
-  <p><i class="bi bi-map"></i> Região: ${region}</p>: Aqui temos uma tag p que irá receber a região do país, o conteúdo é passado através da variável region que foi passada como parâmetro para a função, e também temos um ícone de mapa utilizando a biblioteca Bootstrap Icons.
-  <p><i class="bi bi-people"></i> População: ${population === 0 ? "Nenhum habitante" : `${population.toLocaleString("pt-BR")} habitantes`}</p>: Aqui temos uma tag p que irá receber a população do país, o conteúdo é passado através da variável population que foi passada como parâmetro para a função, e também temos um ícone de pessoas utilizando a biblioteca Bootstrap Icons. Aqui também temos uma verificação utilizando o operador ternário para verficar se a população é igual a zero, se for igual a zero será exibido "Nenhum habitante".
-  - toLocaleString("pt-BR"): Este método é utilizado para formatar o número de habitantes para o padrão brasileiro, ou seja, com ponto como separador de milhar e vírgula como separador decimal.
+O bloco da função começa criando a constante card, que recebe um elemento HTML <div>, esse será o cartão do país. O método classList.add adiciona a classe CSS recebida pelo parâmetro card_class, permitindo a estilização do cartão.
 
-  Após isso, temos o método appendChild que é utilizado para adicionar o cartão criado dentro do elemento container que foi passado como parâmetro para a função.
+O conteúdo do cartão é definido usando innerHTML, com uma template string que monta a estrutura:
+  - <img src="${country_flag}" alt="Imagem da badeira">: Mostra a bandeira do país, usando o parâmetro country_flag.
+  - <h2>${country_name}</h2>: Exibe o nome do país.
+  - <h3><i class="bi bi-geo-alt"></i> Capital: ${capital}</h3>: Exibe a capital, com ícone de localização.
+  - <p><i class="bi bi-map"></i> Região: ${region}</p>: Exibe a região, com ícone de mapa.
+  - <p><i class="bi bi-people"></i> População: ...</p>: Exibe a população, formatando o número para o padrão brasileiro com toLocaleString("pt-BR"). Se a população for zero, mostra "Nenhum habitante".
+
+toLocaleString("pt-BR"): Este método é utilizado para formatar o número de habitantes para o padrão brasileiro, ou seja, com ponto como separador de milhar e vírgula como separador decimal.
+
+Após isso, temos o método appendChild que é utilizado para adicionar o cartão criado dentro do elemento container que foi passado como parâmetro para a função.
 */
 
 export default CreateCards;
-
-/*
-Este bloco começa com a palavra chave export e default, que é utilizada para exportar o módulo por padrão, logo em seguida temos o nome do módulo que será exportado, neste caso é a função CreateCards, e logo em seguida temos o final do bloco de código com um ponto e vírgula.
-*/
