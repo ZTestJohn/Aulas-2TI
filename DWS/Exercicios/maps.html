@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mapa</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <!-- Importa a API do maps de forma assincrona,  key=AIzaSyA6eW8CtNDDE5YJq5E_haq_igFuTkp7SHE: Chave da api, &callback=initMap: chama a função ao acabar-->
+      <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6eW8CtNDDE5YJq5E_haq_igFuTkp7SHE&callback=initMap"
+      async
+      defer 
+    ></script>
+
+    <script>
+      function initMap() { // Inicializa o mapa
+        const local = { lat: -23.55052, lng: -46.633308 }; // Coordenadas de São Paulo
+        const mapa = new google.maps.Map(document.getElementById("mapa"), { // Cria o mapa no elemento com id "mapa"
+          zoom: 12, // Nível de zoom do mapa
+          center: local, // Centraliza o mapa nas coordenadas especificadas
+        });
+
+        const marcador = new google.maps.Marker({ // Cria um marcador no mapa
+          position: local,  // Posição do marcador
+          title: "São Paulo", // Título do marcador
+          map: mapa, // Mapa onde o marcador será exibido
+        });
+      }
+    </script>
+    <div id="mapa" style="height: 400px; width: 100%"></div> <!-- Div onde o mapa será renderizado -->
+  </body>
+</html>
