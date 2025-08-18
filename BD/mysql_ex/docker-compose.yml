@@ -1,0 +1,21 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_aulas_teste
+    hostname: mysql_cursos
+    restart: always
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --innodb-force-recovery=0
+      - --default-time-zone=America/Sao_Paulo
+    ports:
+      - "3306:3306"
+    volumes:
+      - /d/Joao Vitor/Documents/Docker/MySQL/aulas_teste:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: senha
+      MYSQL_DATABASE: base_de_dados
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: senha
