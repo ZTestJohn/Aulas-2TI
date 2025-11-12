@@ -1,0 +1,17 @@
+CREATE DATABASE cinema_db;
+
+USE cinema_db;
+
+CREATE TABLE compras_ingressos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_completo VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    titulo_filme VARCHAR(100) NOT NULL,
+    data_sessao DATE NOT NULL,
+    horario_sessao TIME NOT NULL,
+    quantidade_ingressos INT NOT NULL,
+    tipo_ingresso VARCHAR(20) NOT NULL,
+    forma_pagamento VARCHAR(50) NOT NULL,
+    observacoes TEXT
+);
