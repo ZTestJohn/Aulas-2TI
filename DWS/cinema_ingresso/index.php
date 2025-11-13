@@ -1,10 +1,13 @@
 <?php
-
 require 'conexao.php';
 
-$sql = "SELECT * FROM compras_ingressos ORDER BY id DESC";
-$result = mysqli_query($conn, $sql);
-
+$compras = [];
+try {
+    $stmt = $pdo->query("SELECT * FROM compras_ingressos ORDER BY id DESC");
+    $compras = $stmt->fetchAll();
+} catch (Throwable $e) {
+    $compras = [];
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -32,27 +35,27 @@ $result = mysqli_query($conn, $sql);
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
     <h2 class="text-center pb-2" >Formulário de Compra de Ingresso</h2>
-    <form class="shadow" action="processa.php" method="POST">
+    <form class="shadow" action="processa.php" method="POST" novalidate>
         <label class="form-label">Nome completo:</label>
-        <input class="form-control" type="text" name="nome_completo" required />
+        <input class="form-control" type="text" name="nome_completo" maxlength="120" required />
 
         <label class="form-label">E-mail:</label>
-        <input class="form-control" type="email" name="email" required />
+        <input class="form-control" type="email" name="email" maxlength="120" required />
 
         <label class="form-label">Telefone:</label>
-        <input class="form-control" type="tel" name="telefone" placeholder="(XX) XXXXX-XXXX" required />
+        <input class="form-control" type="tel" name="telefone" placeholder="(XX) XXXXX-XXXX" pattern="^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$" title="Formato esperado: (11) 98888-7777" maxlength="30" required />
 
         <label class="form-label">Título do filme:</label>
-        <input class="form-control" type="text" name="titulo_filme" required />
+        <input class="form-control" type="text" name="titulo_filme" maxlength="150" required />
 
         <label class="form-label">Data da sessão:</label>
-        <input class="form-control" type="date" name="data_sessao" required />
+        <input id="data_sessao" class="form-control" type="date" name="data_sessao" required />
 
         <label class="form-label">Horário da sessão:</label>
         <input class="form-control" type="time" name="horario_sessao" required />
 
         <label class="form-label">Quantidade de ingressos:</label>
-        <input class="form-control" type="number" name="quantidade_ingressos" min="1" required />
+        <input class="form-control" type="number" name="quantidade_ingressos" min="1" max="20" required />
 
         <label class="form-label">Tipo de ingresso:</label>
         <select class="form-select" name="tipo_ingresso" required>
@@ -77,10 +80,7 @@ $result = mysqli_query($conn, $sql);
     </form>
 
     <div>
-        <?php
-
-if ($result && mysqli_num_rows($result) > 0):
-?>
+        <?php if (!empty($compras)): ?>
     <div class="container">
         <br>
         <h2>Carrinho</h2><br>
@@ -102,7 +102,7 @@ if ($result && mysqli_num_rows($result) > 0):
                 </tr>
             </thead>
             <tbody>
-                <?php while ($compra = mysqli_fetch_assoc($result)): ?>
+                <?php foreach ($compras as $compra): ?>
                 <tr>
                     <td><?= htmlspecialchars($compra['id']) ?></td>
                     <td><?= htmlspecialchars($compra['nome_completo']) ?></td>
@@ -123,21 +123,27 @@ if ($result && mysqli_num_rows($result) > 0):
                         </a>
                     </td>
                 </tr>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
         <?php else: ?>
-        <p>Nenhuma compra registrada.</p>
+        <p class="container">Nenhuma compra registrada.</p>
         </div>
         <?php endif; ?>
-
-        <?php
-
-mysqli_close($conn);
-?>
 
     </div>
 
 </body>
 
 </html>
+<script>
+(function() {
+  const input = document.getElementById('data_sessao');
+  if (!input) return;
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  input.min = `${yyyy}-${mm}-${dd}`;
+})();
+</script>

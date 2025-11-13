@@ -7,21 +7,11 @@ if ($id <= 0) {
     die('ID inválido.');
 }
 
-$stmt = $conn->prepare('DELETE FROM compras_ingressos WHERE id = ?');
-if (!$stmt) {
-    die('Erro na preparação da query: ' . $conn->error);
-}
-
-$stmt->bind_param('i', $id);
-
-if ($stmt->execute()) {
-    $stmt->close();
-    $conn->close();
+try {
+    $stmt = $pdo->prepare('DELETE FROM compras_ingressos WHERE id = :id');
+    $stmt->execute([':id' => $id]);
     header('Location: index.php?deleted=1');
     exit;
-} else {
-    echo 'Erro ao excluir: ' . $stmt->error;
+} catch (Throwable $e) {
+    die('Erro ao excluir: ' . $e->getMessage());
 }
-
-$stmt->close();
-$conn->close();

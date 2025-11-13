@@ -8,48 +8,64 @@ if ($id <= 0) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome_completo = trim($_POST['nome_completo'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $telefone = trim($_POST['telefone'] ?? '');
-    $titulo_filme = trim($_POST['titulo_filme'] ?? '');
-    $data_sessao = trim($_POST['data_sessao'] ?? '');
-    $horario_sessao = trim($_POST['horario_sessao'] ?? '');
+    $nome_completo        = trim($_POST['nome_completo'] ?? '');
+    $email                = trim($_POST['email'] ?? '');
+    $telefone             = trim($_POST['telefone'] ?? '');
+    $titulo_filme         = trim($_POST['titulo_filme'] ?? '');
+    $data_sessao          = trim($_POST['data_sessao'] ?? '');
+    $horario_sessao       = trim($_POST['horario_sessao'] ?? '');
     $quantidade_ingressos = isset($_POST['quantidade_ingressos']) ? (int) $_POST['quantidade_ingressos'] : 0;
-    $tipo_ingresso = trim($_POST['tipo_ingresso'] ?? '');
-    $forma_pagamento = trim($_POST['forma_pagamento'] ?? '');
-    $observacoes = trim($_POST['observacoes'] ?? '');
+    $tipo_ingresso        = trim($_POST['tipo_ingresso'] ?? '');
+    $forma_pagamento      = trim($_POST['forma_pagamento'] ?? '');
+    $observacoes          = trim($_POST['observacoes'] ?? '');
 
-
-    if ($nome_completo === '' || $email === '' || $titulo_filme === '' || $quantidade_ingressos <= 0) {
+    if ($nome_completo === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $titulo_filme === '' || $quantidade_ingressos <= 0) {
         $error = 'Preencha os campos obrigatórios corretamente.';
     } else {
-        $stmt = $conn->prepare("UPDATE compras_ingressos SET nome_completo = ?, email = ?, telefone = ?, titulo_filme = ?, data_sessao = ?, horario_sessao = ?, quantidade_ingressos = ?, tipo_ingresso = ?, forma_pagamento = ?, observacoes = ? WHERE id = ?");
+        try {
+            $sql = 'UPDATE compras_ingressos SET 
+                        nome_completo = :nome_completo,
+                        email = :email,
+                        telefone = :telefone,
+                        titulo_filme = :titulo_filme,
+                        data_sessao = :data_sessao,
+                        horario_sessao = :horario_sessao,
+                        quantidade_ingressos = :quantidade_ingressos,
+                        tipo_ingresso = :tipo_ingresso,
+                        forma_pagamento = :forma_pagamento,
+                        observacoes = :observacoes
+                    WHERE id = :id';
 
-        if (!$stmt) {
-            die('Erro na preparação da query: ' . $conn->error);
-        }
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                ':nome_completo'        => $nome_completo,
+                ':email'                => $email,
+                ':telefone'             => $telefone,
+                ':titulo_filme'         => $titulo_filme,
+                ':data_sessao'          => $data_sessao,
+                ':horario_sessao'       => $horario_sessao,
+                ':quantidade_ingressos' => $quantidade_ingressos,
+                ':tipo_ingresso'        => $tipo_ingresso,
+                ':forma_pagamento'      => $forma_pagamento,
+                ':observacoes'          => $observacoes,
+                ':id'                   => $id,
+            ]);
 
-        $types = 'ssssssisssi'; // 6 strings, 1 int, 3 strings, 1 int
-        $stmt->bind_param($types, $nome_completo, $email, $telefone, $titulo_filme, $data_sessao, $horario_sessao, $quantidade_ingressos, $tipo_ingresso, $forma_pagamento, $observacoes, $id);
-
-        if ($stmt->execute()) {
-            $stmt->close();
-            $conn->close();
             header('Location: index.php?edited=1');
             exit;
-        } else {
-            $error = 'Erro ao atualizar: ' . $stmt->error;
-            $stmt->close();
+        } catch (Throwable $e) {
+            $error = 'Erro ao atualizar: ' . $e->getMessage();
         }
     }
 }
 
-$stmt = $conn->prepare('SELECT * FROM compras_ingressos WHERE id = ? LIMIT 1');
-$stmt->bind_param('i', $id);
-$stmt->execute();
-$result = $stmt->get_result();
-$compra = $result->fetch_assoc();
-$stmt->close();
+try {
+    $stmt = $pdo->prepare('SELECT * FROM compras_ingressos WHERE id = :id LIMIT 1');
+    $stmt->execute([':id' => $id]);
+    $compra = $stmt->fetch();
+} catch (Throwable $e) {
+    die('Erro ao carregar compra: ' . $e->getMessage());
+}
 
 if (!$compra) {
     die('Compra não encontrada.');
